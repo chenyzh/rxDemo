@@ -27,15 +27,16 @@ public class OperatorManager {
     public OperatorManager(final Context context) {
         this.context = context;
         builder = new AlertDialog.Builder(context);
-        withZip();
+        withCombineLatest();
+//        withZip();
 //        withMerge();
     }
 
-    private void dialogHandle(String string) {
+    private void dialogHandle(String title,String string) {
         if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
         }
-        builder.setTitle("提示").setMessage(string).setNegativeButton("确定", new DialogInterface.OnClickListener() {
+        builder.setTitle(title).setMessage(string).setNegativeButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -58,7 +59,7 @@ public class OperatorManager {
         }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<String>() {
             @Override
             public void accept(String o) {
-                dialogHandle(o);
+                dialogHandle("merge operator",o);
             }
         });
     }
@@ -72,12 +73,24 @@ public class OperatorManager {
         }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<String>() {
             @Override
             public void accept(String s) throws Exception {
-                dialogHandle(s);
+                dialogHandle("zip operator",s);
             }
         });
     }
 
-//    private void withCombineLastes
+    private void withCombineLatest(){
+        Observable.combineLatest(behaviorSubject, getCountObs(), getOtherCountObs(), new Function3<Integer, Integer, Integer, String>() {
+            @Override
+            public String apply(Integer integer, Integer integer2, Integer integer3) throws Exception {
+                return integer + "+" + integer2 + "+" + integer3 + " = " + (integer + integer2 + integer3);
+            }
+        }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                dialogHandle("combineLatest operator",s);
+            }
+        });
+    }
 
 
 
