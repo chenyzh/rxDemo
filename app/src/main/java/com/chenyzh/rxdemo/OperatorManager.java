@@ -27,8 +27,8 @@ public class OperatorManager {
     public OperatorManager(final Context context) {
         this.context = context;
         builder = new AlertDialog.Builder(context);
-        withCombineLatest();
-//        withZip();
+//        withCombineLatest();
+        withZip();
 //        withMerge();
     }
 
@@ -79,7 +79,7 @@ public class OperatorManager {
     }
 
     private void withCombineLatest(){
-        Observable.combineLatest(behaviorSubject, getCountObs(), getOtherCountObs(), new Function3<Integer, Integer, Integer, String>() {
+        Observable.combineLatest(getOtherCountObs(),behaviorSubject, getCountObs(),  new Function3<Integer, Integer, Integer, String>() {
             @Override
             public String apply(Integer integer, Integer integer2, Integer integer3) throws Exception {
                 return integer + "+" + integer2 + "+" + integer3 + " = " + (integer + integer2 + integer3);
@@ -110,6 +110,6 @@ public class OperatorManager {
     }
 
     public Observable<Integer> getOtherCountObs() {
-        return Observable.just(9);
+        return Observable.just (9,11);
     }
 }
