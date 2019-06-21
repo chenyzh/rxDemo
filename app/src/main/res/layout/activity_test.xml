@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:id="@+id/root_layout"
+  android:layout_height="match_parent"
+  android:background="@android:color/holo_orange_light">
+
+  <Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="16sp"
+    android:text="BACK"
+    android:textColor="@android:color/white"
+    android:background="@android:color/holo_red_dark"
+    android:layout_margin="10dp"
+    android:id="@+id/back"
+    />
+
+  <RelativeLayout
+    android:id="@+id/free_trial_container"
+    android:layout_width="80dp"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="30dp"
+    android:layout_gravity="top|right">
+
+    <ImageView
+      android:id="@+id/free_trial_flag"
+      android:layout_width="36dp"
+      android:layout_height="64dp"
+      android:layout_centerHorizontal="true"
+      android:src="@drawable/free_trial_guide_flag"
+      />
+    <TextView
+      android:id="@+id/count_down"
+      android:layout_width="50dp"
+      android:layout_height="18dp"
+      android:layout_below="@id/free_trial_flag"
+      android:layout_centerHorizontal="true"
+      android:background="@drawable/free_trial_count_down_bg"
+      android:gravity="center"
+      android:text="00:00"
+      android:textColor="@android:color/white"
+      android:textSize="12sp"
+      />
+
+    <ImageView
+      android:id="@+id/free_trial_heart01"
+      android:layout_width="11dp"
+      android:layout_height="10dp"
+      android:layout_marginTop="30dp"
+      android:layout_marginLeft="10dp"
+      android:layout_toRightOf="@+id/free_trial_flag"
+      android:rotation="160"
+      android:src="@drawable/free_trial_guide_heart"
+      />
+    <ImageView
+      android:id="@+id/free_trial_heart02"
+      android:layout_width="11dp"
+      android:layout_height="10dp"
+      android:layout_marginTop="10dp"
+      android:layout_marginLeft="10dp"
+      android:layout_toRightOf="@+id/free_trial_flag"
+      android:rotation="-45"
+      android:src="@drawable/free_trial_guide_heart"
+      />
+    <ImageView
+      android:id="@+id/free_trial_heart03"
+      android:layout_width="11dp"
+      android:layout_height="10dp"
+      android:layout_marginTop="15dp"
+      android:layout_marginRight="10dp"
+      android:layout_toLeftOf="@+id/free_trial_flag"
+      android:rotation="-45"
+      android:src="@drawable/free_trial_guide_heart"
+      />
+  </RelativeLayout>
+</FrameLayout>
